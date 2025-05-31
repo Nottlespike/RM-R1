@@ -9,11 +9,11 @@ from torchdata.stateful_dataloader import StatefulDataLoader
 from verl.trainer.ppo.ray_trainer import RayPPOTrainer as _RayPPOTrainer
 from verl.utils.dataset.rl_dataset import collate_fn
 
-from rubric_rm.verl.utils.dataset.rl_dataset import RubricRMDataset
+from rm_r1.verl.utils.dataset.rl_dataset import RubricRMDataset
 
 
 class RubricRMRayPPOTrainer(_RayPPOTrainer):
-    def _create_dataloader(self):
+    def _create_dataloader(self, train_dataset, val_dataset, collate_fn, train_sampler):
         # TODO: we have to make sure the batch size is divisible by the dp size
         self.train_dataset = RubricRMDataset(
             files=self.config.data.train_files,

@@ -36,6 +36,7 @@ actor_rollout_ref:
     use_torch_compile: True # False to disable torch compile
     kl_loss_coef: 0.001 # for grpo  # Turn this into 0 for DAPO
     kl_loss_type: low_var_kl # for grpo
+    loss_agg_mode: "token-mean" # / "seq-mean-token-sum" / "seq-mean-token-mean" / "seq-mean-token-sum-norm"
     ppo_epochs: 1
     shuffle: False
     ulysses_sequence_parallel_size: 1 # sp size
@@ -83,6 +84,8 @@ actor_rollout_ref:
     max_num_batched_tokens: 8192
     max_model_len: null
     max_num_seqs: 1024
+    multi_turn:
+      enable: False
     log_prob_micro_batch_size: null # will be deprecated, use log_prob_micro_batch_size_per_gpu
     log_prob_micro_batch_size_per_gpu: 8
     log_prob_use_dynamic_bsz: ${actor_rollout_ref.actor.use_dynamic_bsz}
@@ -166,6 +169,7 @@ algorithm:
   gamma: 1.0
   lam: 1.0
   adv_estimator: grpo
+  use_kl_in_reward: False
   kl_penalty: kl  # how to estimate kl divergence
   kl_ctrl:
     type: fixed

@@ -135,9 +135,9 @@ class ActorRolloutRefWorker(Worker):
 
         self.generation_config = get_generation_config(local_path, trust_remote_code=trust_remote_code)
 
-        if use_remove_padding:
-            from verl.models.registry import check_model_support_rmpad
-            check_model_support_rmpad(actor_model_config.model_type)
+        # if use_remove_padding:
+        #     from verl.models.registry import check_model_support_rmpad
+        #     check_model_support_rmpad(actor_model_config.model_type)
 
         if use_remove_padding and self.ulysses_sequence_parallel_size > 1:
             from verl.models.transformers.monkey_patch import apply_monkey_patch

@@ -1,10 +1,11 @@
 export VLLM_ATTENTION_BACKEND=XFORMERS
 export VLLM_USE_V1=0
 export VERL_PPO_LOGGING_LEVEL="INFO"
+export PYTHONPATH="/home/ubuntu/RM-R1/vllm:$PYTHONPATH"
 N_GPU=8
 
 # Model Setting
-MODEL_PATH=deepseek-ai/DeepSeek-R1-Distill-Qwen-14B # You may specify local directory
+MODEL_PATH=deepseek-ai/DeepSeek-R1-0528-Qwen3-8B # You may specify local directory
 
 # Training Setting
 LR=1.0e-6
@@ -23,8 +24,8 @@ FORWARD_PER_GPU=1       # Batch size to get logprob. Lower this if you met OOM p
 
 # Logging Setting
 PROJECT_NAME=RM-R1
-EXPERIMENT_NAME=RM-R1-Dpsk-Distilled-14B-LR${LR}
-SAVE_NAME=RM-R1-Dpsk-Distilled-14B-LR${LR}
+EXPERIMENT_NAME=RM-R1-Dpsk-Distilled-8B-LR${LR}
+SAVE_NAME=RM-R1-Dpsk-Distilled-8B-LR${LR}
 SAVE_META_DIR="Your_Desired_Meta_Save_Dir"
 
 # Reward Setting
